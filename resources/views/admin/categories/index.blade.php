@@ -20,7 +20,7 @@
                     <td>
                         <div class="d-flex align-items-center gap-2">
                             @if ($category->image_path)
-                                <img src="{{ \Illuminate\Support\Facades\Storage::url($category->image_path) }}"
+                                <img src="{{ $category->image_url }}"
                                      alt="" class="rounded" width="36" height="36" style="object-fit:cover;">
                             @endif
                             <span class="fw-medium">{{ $category->name }}</span>

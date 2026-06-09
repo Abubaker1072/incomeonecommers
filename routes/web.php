@@ -28,16 +28,38 @@ Route::get('/featured', function () {
 })->name('featured');
 
 Route::get('/category/{slug}', function ($slug) {
-    $category = App\Models\Category::where('slug', $slug)->firstOrFail();
+    $category = App\Models\Category::where('slug', $slug)
+        ->whereHas('products', function ($query) {
+            $query->where('is_active', true)->where('stock', '>', 0);
+        })
+        ->firstOrFail();
+
     $products = App\Models\Product::with('category')
         ->where('category_id', $category->id)
         ->where('is_active', true)
+        ->where('stock', '>', 0)
+        ->latest()
         ->get();
-    return view('products.index', compact('products'));
+
+    $categories = App\Models\Category::withCount(['products' => function ($query) {
+        $query->where('is_active', true)->where('stock', '>', 0);
+    }])
+        ->whereHas('products', function ($query) {
+            $query->where('is_active', true)->where('stock', '>', 0);
+        })
+        ->orderBy('name')
+        ->get();
+
+    return view('websitemarketplace.views.products.index', compact('products', 'categories', 'category'));
 })->name('categories.show');
 
 Route::get('/categories', function () {
-    $categories = App\Models\Category::whereNull('parent_id')
+    $categories = App\Models\Category::withCount(['products' => function ($query) {
+        $query->where('is_active', true)->where('stock', '>', 0);
+    }])
+        ->whereHas('products', function ($query) {
+            $query->where('is_active', true)->where('stock', '>', 0);
+        })
         ->orderBy('name')
         ->get();
     return view('pages.categories', compact('categories'));

@@ -127,11 +127,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        @if($product->images->count() > 0)
-                                            <img src="{{ asset($product->images->first()->path) }}" alt="{{ $product->name }}" style="height: 250px; object-fit: cover;">
-                                        @else
-                                            <img src="{{ asset('marketplace/img/product01.png') }}" alt="{{ $product->name }}" style="height: 250px; object-fit: cover;">
-                                        @endif
+                                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}" style="height: 250px; object-fit: cover;">
                                         <div class="product-label">
                                             <span class="new">FEATURED</span>
                                         </div>
@@ -201,11 +197,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        @if($product->images->count() > 0)
-                                            <img src="{{ asset($product->images->first()->path) }}" alt="{{ $product->name }}" style="height: 250px; object-fit: cover;">
-                                        @else
-                                            <img src="{{ asset('marketplace/img/product01.png') }}" alt="{{ $product->name }}" style="height: 250px; object-fit: cover;">
-                                        @endif
+                                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}" style="height: 250px; object-fit: cover;">
                                         <div class="product-label">
                                             <span class="sale">{{ rand(10, 40) }}%</span>
                                             <span class="new">NEW</span>

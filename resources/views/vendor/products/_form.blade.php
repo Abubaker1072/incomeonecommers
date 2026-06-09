@@ -43,7 +43,7 @@
             @if ($product?->image_path)
                 <div class="mb-3">
                     <small class="text-muted">Current image:</small><br>
-                    <img src="{{ \Illuminate\Support\Facades\Storage::url($product->image_path) }}"
+                    <img src="{{ $product->image_url }}"
                          class="rounded mt-1" width="120" alt="">
                 </div>
             @endif

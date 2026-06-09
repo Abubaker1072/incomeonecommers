@@ -19,7 +19,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="product">
                     <div class="product-img">
-                        <img src="{{ asset('marketplace/img/product01.png') }}" alt="{{ $product->name }}">
+                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}">
                         <div class="product-label">
                             <span class="new">FEATURED</span>
                         </div>

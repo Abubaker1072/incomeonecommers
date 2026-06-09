@@ -1,7 +1,7 @@
 @php
     $images = [];
     if ($product->image_path) {
-        $images[] = (strpos($product->image_path, 'http') === 0) ? $product->image_path : asset($product->image_path);
+        $images[] = $product->image_url;
     }
     if ($product->relationLoaded('images')) {
         foreach ($product->images as $img) {

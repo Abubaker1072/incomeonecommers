@@ -80,47 +80,25 @@
     <div class="container">
         <!-- row -->
         <div class="row">
-            <!-- shop -->
-            <div class="col-md-4 col-xs-6">
-                <div class="shop">
-                    <div class="shop-img">
-                        <img src="{{ asset('img/shop01.png') }}" alt="">
-                    </div>
-                    <div class="shop-body">
-                        <h3>Laptop<br>Collection</h3>
-                        <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <!-- /shop -->
-
-            <!-- shop -->
-            <div class="col-md-4 col-xs-6">
-                <div class="shop">
-                    <div class="shop-img">
-                        <img src="{{ asset('img/shop03.png') }}" alt="">
-                    </div>
-                    <div class="shop-body">
-                        <h3>Accessories<br>Collection</h3>
-                        <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+            @forelse($categories->take(3) as $category)
+                <!-- shop -->
+                <div class="col-md-4 col-xs-6">
+                    <div class="shop">
+                        <div class="shop-img">
+                            <img src="{{ $category->image_url }}" alt="{{ $category->name }}">
+                        </div>
+                        <div class="shop-body">
+                            <h3>{{ $category->name }}<br>Collection</h3>
+                            <a href="{{ route('categories.show', $category->slug) }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- /shop -->
-
-            <!-- shop -->
-            <div class="col-md-4 col-xs-6">
-                <div class="shop">
-                    <div class="shop-img">
-                        <img src="{{ asset('img/shop02.png') }}" alt="">
-                    </div>
-                    <div class="shop-body">
-                        <h3>Cameras<br>Collection</h3>
-                        <a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
+                <!-- /shop -->
+            @empty
+                <div class="col-md-12">
+                    <p class="text-center">No categories available.</p>
                 </div>
-            </div>
-            <!-- /shop -->
+            @endforelse
         </div>
         <!-- /row -->
     </div>
@@ -165,7 +143,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="{{ $product->image_path ? \Illuminate\Support\Facades\Storage::url($product->image_path) : asset('marketplace/img/product01.png') }}"
+                                        <img src="{{ $product->image_url }}"
                                              alt="{{ $product->name }}"
                                              style="height: 250px; object-fit: cover;">
                                         @if($product->is_featured)

@@ -15,53 +15,23 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <div class="shop">
-                    <div class="shop-img">
-                        <img src="{{ asset('marketplace/img/shop01.png') }}" alt="Laptops">
-                    </div>
-                    <div class="shop-body">
-                        <h3>Laptop<br>Collection</h3>
-                        <a href="{{ route('categories.show', 'laptops') }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <div class="shop">
-                    <div class="shop-img">
-                        <img src="{{ asset('marketplace/img/shop03.png') }}" alt="Accessories">
-                    </div>
-                    <div class="shop-body">
-                        <h3>Accessories<br>Collection</h3>
-                        <a href="{{ route('categories.show', 'accessories') }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+            @forelse($categories as $category)
+                <div class="col-md-4 col-sm-6">
+                    <div class="shop">
+                        <div class="shop-img">
+                            <img src="{{ $category->image_url }}" alt="{{ $category->name }}">
+                        </div>
+                        <div class="shop-body">
+                            <h3>{{ $category->name }}<br>Collection</h3>
+                            <a href="{{ route('categories.show', $category->slug) }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <div class="shop">
-                    <div class="shop-img">
-                        <img src="{{ asset('marketplace/img/shop02.png') }}" alt="Cameras">
-                    </div>
-                    <div class="shop-body">
-                        <h3>Cameras<br>Collection</h3>
-                        <a href="{{ route('categories.show', 'cameras') }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
+            @empty
+                <div class="col-md-12">
+                    <p class="text-center">No categories available.</p>
                 </div>
-            </div>
-
-            <div class="col-md-4 col-sm-6">
-                <div class="shop">
-                    <div class="shop-img">
-                        <img src="{{ asset('marketplace/img/shop01.png') }}" alt="Smartphones">
-                    </div>
-                    <div class="shop-body">
-                        <h3>Smartphones<br>Collection</h3>
-                        <a href="{{ route('categories.show', 'smartphones') }}" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </div>

@@ -20,7 +20,7 @@
                 <tr>
                     <td style="width: 56px;">
                         @if ($product->image_path)
-                            <img src="{{ \Illuminate\Support\Facades\Storage::url($product->image_path) }}"
+                            <img src="{{ $product->image_url }}"
                                  alt="" class="rounded" width="40" height="40" style="object-fit:cover;">
                         @else
                             <div class="icon-shape icon-md bg-light text-muted rounded">
