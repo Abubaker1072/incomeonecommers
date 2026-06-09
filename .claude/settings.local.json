@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(composer require *)",
+      "Bash(php artisan *)",
+      "Bash(/usr/bin/php8.5 /home/zohaib/Projects/incomeonecom/artisan migrate:status)",
+      "Bash(/usr/bin/php8.5 artisan *)",
+      "Bash(cp template/src/assets/scss/*.scss resources/scss/)",
+      "Bash(cp template/src/assets/js/*.js resources/js/admin/)",
+      "Bash(cp -r template/src/assets/images/* public/admin/images/)",
+      "Bash(npm install *)"
+    ]
+  }
+}
